@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abiral Jha — Cloud & Infrastructure Engineer</title>
+<meta name="description" content="Abiral Jha — Cloud Engineer, Terraform Developer, and Infrastructure Specialist. B.S. in Business Computer Information Systems from University of North Texas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0c0e;
+  --bg-card: #141416;
+  --bg-card-hover: #1a1a1e;
+  --border: #2a2a2e;
+  --border-hover: #3a3a40;
+  --text: #e8e6e1;
+  --text-dim: #8a8880;
+  --text-muted: #5a5850;
+  --accent: #c4956a;
+  --accent-dim: rgba(196,149,106,0.12);
+  --accent-glow: rgba(196,149,106,0.06);
+  --green: #6bc4a0;
+  --blue: #6aa4c4;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+a:hover { opacity: 0.8; }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(12,12,14,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(42,42,46,0.5);
+}
+
+.nav-name {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.nav-links { display: flex; gap: 32px; }
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); opacity: 1; }
+
+/* ---- HERO ---- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 40px 80px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(48px, 7vw, 80px);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-desc {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-dim);
+  max-width: 580px;
+  margin-bottom: 48px;
+}
+
+.hero-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.btn-outline:hover { border-color: var(--border-hover); color: var(--text); opacity: 1; }
+
+/* ---- SECTIONS ---- */
+section {
+  padding: 100px 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 48px;
+}
+
+/* ---- ABOUT ---- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.about-text {
+  color: var(--text-dim);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.about-text p + p { margin-top: 20px; }
+
+.detail-list { list-style: none; }
+
+.detail-list li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-label { color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; }
+.detail-value { color: var(--text); font-weight: 500; text-align: right; }
+
+/* ---- EXPERIENCE ---- */
+.exp-item {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.exp-item:first-child { border-top: 1px solid var(--border); }
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.exp-role {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.exp-date { color: var(--text-muted); font-size: 13px; letter-spacing: 0.04em; }
+
+.exp-company { color: var(--text-dim); font-size: 14px; margin-bottom: 16px; }
+
+.exp-desc {
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ---- PROJECTS ---- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.project-card.featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.project-name {
+  font-family: var(--serif);
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.project-desc {
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-top: 16px;
+}
+
+.project-link::after {
+  content: '→';
+  transition: transform 0.2s;
+}
+
+.project-link:hover::after { transform: translateX(4px); }
+
+/* ---- SKILLS ---- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.skill-group {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.skill-group-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.skill-group p {
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ---- CERTIFICATIONS ---- */
+.certs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.cert-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+}
+
+.cert-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.cert-name {
+  font-family: var(--serif);
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.cert-issuer {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* ---- CONTACT ---- */
+.contact-section {
+  text-align: center;
+  padding: 120px 40px;
+}
+
+.contact-section .section-title { margin-bottom: 20px; }
+
+.contact-desc {
+  color: var(--text-dim);
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ---- FOOTER ---- */
+footer {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .nav-links { gap: 20px; }
+  .nav-links a { font-size: 12px; }
+  .hero { padding: 100px 20px 60px; }
+  section { padding: 60px 20px; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card.featured { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .certs-grid { grid-template-columns: 1fr; }
+  .contact-section { padding: 80px 20px; }
+}
+
+@media (max-width: 480px) {
+  .nav-links { gap: 14px; }
+  .hero h1 { font-size: 36px; }
+  .exp-header { flex-direction: column; gap: 4px; }
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-label, .hero h1, .hero-desc, .hero-links {
+  animation: fadeUp 0.7s ease-out both;
+}
+
+.hero h1 { animation-delay: 0.1s; }
+.hero-desc { animation-delay: 0.2s; }
+.hero-links { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Abiral Jha</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Cloud &amp; Infrastructure Engineer</div>
+  <h1>Building reliable<br>infrastructure <em>with code</em></h1>
+  <p class="hero-desc">
+    Azure-certified engineer specializing in Terraform, cloud infrastructure, and DevOps. 
+    B.S. in Business Computer Information Systems from the University of North Texas. 
+    Passionate about Infrastructure as Code, CI/CD pipelines, and making deployments reproducible.
+  </p>
+  <div class="hero-links">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="https://github.com/abiral18" class="btn btn-outline" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/abiral-jha-7051552a0" class="btn btn-outline" target="_blank">LinkedIn</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <h2 class="section-title">A bit about me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a recent graduate from the University of North Texas with a B.S. in Business Computer Information Systems, graduating Magna Cum Laude on a Dean's Scholarship. Originally from Kathmandu, Nepal.</p>
+      <p>My focus is on cloud infrastructure and automation — I enjoy writing Terraform to provision reproducible environments, building CI/CD pipelines, and containerizing applications. I've worked across AWS and Azure, and I'm comfortable in Python, Bash, and HCL.</p>
+      <p>Outside of tech, I spent nearly two years as IT Support at UNT's College of Visual Arts &amp; Design, managing infrastructure for 500+ users and automating workflows with Python scripts.</p>
+    </div>
+    <ul class="detail-list">
+      <li><span class="detail-label">Location</span><span class="detail-value">Texas, USA</span></li>
+      <li><span class="detail-label">Education</span><span class="detail-value">B.S. BCIS — UNT '26</span></li>
+      <li><span class="detail-label">Honors</span><span class="detail-value">Magna Cum Laude</span></li>
+      <li><span class="detail-label">Certification</span><span class="detail-value">Azure AZ-900</span></li>
+      <li><span class="detail-label">Languages</span><span class="detail-value">English, Nepali, Hindi</span></li>
+      <li><span class="detail-label">Interests</span><span class="detail-value">IaC, DevOps, Cloud Security</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2 class="section-title">Where I've worked</h2>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span class="exp-role">IT Support</span>
+      <span class="exp-date">Nov 2023 — Jul 2025</span>
+    </div>
+    <div class="exp-company">UNT College of Visual Arts &amp; Design, Denton, TX</div>
+    <div class="exp-desc">
+      Managed IT infrastructure supporting 500+ users including Active Directory administration, group policy configuration, and access provisioning. Resolved 100+ incidents per semester through ServiceNow. Automated system diagnostics and user provisioning workflows using Python and Bash scripts, reducing manual effort by 20%. Coordinated software deployment and patch management across 50+ lab workstations.
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span class="exp-role">Resident Advisor</span>
+      <span class="exp-date">Aug 2025 — May 2026</span>
+    </div>
+    <div class="exp-company">University of North Texas Housing, Denton, TX</div>
+    <div class="exp-desc">
+      Managed community operations for 30+ residents, coordinating logistics, communications, and incident response. Tracked operational metrics to inform resource allocation decisions. Served as on-call escalation point for facility and safety incidents.
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span class="exp-role">JPMC Software Engineering Simulation</span>
+      <span class="exp-date">Forage Virtual Experience</span>
+    </div>
+    <div class="exp-company">J.P. Morgan Chase &amp; Co. (via Forage)</div>
+    <div class="exp-desc">
+      Completed the J.P. Morgan Advanced Software Engineering virtual experience. Worked with Java on a simulated trading platform, implementing features and fixing bugs in a production-style codebase.
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title">Things I've built</h2>
+  <div class="projects-grid">
+
+    <div class="project-card featured">
+      <div>
+        <div class="project-name">Terraform Multi-Tier AWS Infrastructure</div>
+        <div class="project-desc">
+          Reusable Terraform modules provisioning a full VPC with public/private subnets across 2 availability zones, EC2 web server, and RDS MySQL database. Remote state management with S3 backend and DynamoDB locking. The entire stack is version-controlled and reproducible with a single <code>terraform apply</code>.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Terraform</span>
+          <span class="tag">AWS</span>
+          <span class="tag">VPC</span>
+          <span class="tag">EC2</span>
+          <span class="tag">RDS</span>
+          <span class="tag">S3</span>
+          <span class="tag">HCL</span>
+        </div>
+        <a href="https://github.com/abiral18/terraform-aws-multi-tier" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+      <div>
+        <div class="project-name">Azure Infrastructure with CI/CD</div>
+        <div class="project-desc">
+          Azure resource groups, virtual networks, subnets, NSGs, and storage deployed via Terraform modules. Integrated with a GitHub Actions pipeline that runs automated format checking, initialization, and validation on every push and pull request.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Terraform</span>
+          <span class="tag">Azure</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">VNet</span>
+        </div>
+        <a href="https://github.com/abiral18/terraform-azure-infra" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">Containerized App Deployment</div>
+      <div class="project-desc">
+        Terraform provisions AWS EC2 infrastructure that automatically pulls and runs a Docker container from GitHub Container Registry. Includes a Bash health check script for deployment verification.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Terraform</span>
+        <span class="tag">Docker</span>
+        <span class="tag">AWS</span>
+        <span class="tag">GHCR</span>
+        <span class="tag">Bash</span>
+      </div>
+      <a href="https://github.com/abiral18/terraform-docker-deploy" class="project-link" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">DocQueue — Distributed Task Queue</div>
+      <div class="project-desc">
+        A distributed task queue for document processing with priority scheduling via Redis sorted sets, retry logic with exponential backoff, dead-letter queues, and worker heartbeat monitoring. Dockerized with docker-compose.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">Redis</span>
+        <span class="tag">Docker</span>
+      </div>
+      <a href="https://github.com/abiral18/task-docker-queue" class="project-link" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">Task Manager REST API</div>
+      <div class="project-desc">
+        Full CRUD REST API built with Python and Flask, featuring JWT-ready authentication. Managed development using Agile sprints on GitHub Projects with a Kanban board workflow.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+        <span class="tag">REST API</span>
+        <span class="tag">Agile</span>
+      </div>
+      <a href="https://github.com/abiral18/task-manager-api" class="project-link" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">Cloud File Storage API</div>
+      <div class="project-desc">
+        File upload/download service backed by AWS S3, built with Java and Spring Boot. Users upload files via API, get shareable links, and manage storage through RESTful endpoints.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Java</span>
+        <span class="tag">Spring Boot</span>
+        <span class="tag">AWS S3</span>
+      </div>
+      <a href="https://github.com/abiral18/cloud-storage-api" class="project-link" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">Network Port Scanner</div>
+      <div class="project-desc">
+        Python-based network scanner using raw sockets and threading for concurrent port scanning with service detection. Outputs clean reports — a mini Nmap built from scratch.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Sockets</span>
+        <span class="tag">Networking</span>
+        <span class="tag">Security</span>
+      </div>
+      <a href="https://github.com/abiral18/network-scanner" class="project-link" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">Security Audit Dashboard</div>
+      <div class="project-desc">
+        Web dashboard that runs security checks on a server — open ports, failed login attempts, suspicious processes — and displays results visually. Built with Python, Flask, and HTML.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+        <span class="tag">Security</span>
+        <span class="tag">Dashboard</span>
+      </div>
+      <a href="https://github.com/abiral18/security-dashboard" class="project-link" target="_blank">View on GitHub</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <h2 class="section-title">Technical toolkit</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Infrastructure as Code</div>
+      <p>Terraform (HCL), modules, state management, workspaces, S3 remote backends, GitHub Actions CI/CD</p>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Cloud Platforms</div>
+      <p>AWS (EC2, S3, VPC, RDS, IAM, DynamoDB), Microsoft Azure (VNets, NSGs, Storage, Resource Groups)</p>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Containers & DevOps</div>
+      <p>Docker, Docker Compose, GitHub Actions, Git, CI/CD pipelines, container registries (GHCR)</p>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Languages & Scripting</div>
+      <p>Python, Bash, Java, JavaScript, TypeScript, SQL, HCL, JSON/YAML</p>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Systems & Networking</div>
+      <p>Active Directory, Windows Server, TCP/IP, DNS, DHCP, ServiceNow, VPNs, subnets</p>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Frameworks & Tools</div>
+      <p>Flask, FastAPI, Spring Boot, Redis, REST APIs, JWT, PowerShell, Linux/WSL</p>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-label">Certifications</div>
+  <h2 class="section-title">Credentials</h2>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-icon">☁️</div>
+      <div class="cert-name">Azure Fundamentals</div>
+      <div class="cert-issuer">Microsoft — AZ-900</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🖥️</div>
+      <div class="cert-name">IBM Z Xplore</div>
+      <div class="cert-issuer">Concepts, Advanced, Extended</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🏗️</div>
+      <div class="cert-name">Terraform Associate</div>
+      <div class="cert-issuer">HashiCorp — In Progress</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">Let's connect</h2>
+  <p class="contact-desc">
+    I'm actively looking for roles in cloud engineering, Terraform development, and DevOps.<br>
+    Open to relocation nationwide. Authorized to work in the U.S. (OPT).
+  </p>
+  <div class="contact-links">
+    <a href="mailto:abiraljha@gmail.com" class="btn btn-primary">abiraljha@gmail.com</a>
+    <a href="https://linkedin.com/in/abiral-jha-7051552a0" class="btn btn-outline" target="_blank">LinkedIn</a>
+    <a href="https://github.com/abiral18" class="btn btn-outline" target="_blank">GitHub</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2026 Abiral Jha &nbsp;·&nbsp; Built with intention, deployed with Terraform
+</footer>
+
+</body>
+</html>
